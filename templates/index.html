@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>LiveEd</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+	<title></title>
+</head>
+<body style="background-color: white">
+
+<nav class="navbar navbar-inverse" style="background-color: #171B19">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="#" style="color: #F9B134"><i class="fas fa-code"></i>&nbsp LiveEd</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" style="color: #F9B134"><i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
+    </ul>
+  </div>
+</nav>
+
+
+    <div style="margin-left: 15px">
+    	<div class="row">
+    		<div class="col col-7 "><br>
+    		<img src="{{ url_for('video_feed') }}" alt="image"width="100%" height="565px"style="border: 2px solid;border-color: black">
+    		</div>
+    		<div class="col col-4 "style="text-align: center;font-family: cursive"><br><span style="font-size: 30px;color:black"><b>LIVE CHAT </b>
+    		</span>
+    			<div style="text-align: justify;font-size: 15px;">
+            <script type="text/javascript">
+$(document).ready(function() {
+
+	var socket = io.connect('http://127.0.0.1:5000');
+
+	socket.on('connect', function() {
+		socket.send('User has connected!');
+	});
+
+	socket.on('message', function(msg) {
+		$("#messages").append('<li>'+msg+'</li>');
+		console.log('Received message');
+	});
+
+	$('#sendbutton').on('click', function() {
+		socket.send($('#myMessage').val());
+		$('#myMessage').val('');
+	});
+
+});
+</script>
+    			</div>
+          <ul id="messages"></ul>
+          <input type="text" id="myMessage">
+          <button id="sendbutton">Send</button>
+            </body>
+				</div>
+<div class="col col-1"></div>
+        	</div>
+
+    </div>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</body>
+</html>
